@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-NUAA 选课脚本（最终版 v2）
+NUAA 选课脚本
 - 默认使用浏览器里复制的整行 Cookie（不依赖 Selenium）。
 - 自动适配 profileId / electionProfile.id 两种参数名。
 - 预热 defaultPage，仿真 XHR 头。
@@ -78,8 +78,8 @@ def smart_read(resp):
     return raw.decode("utf-8", errors="ignore"), "utf-8"
 
 def get_profile_id() -> str:
-    # pid = input("请输入选课档案ID（示例：4665）：").strip()
-    pid = "4665"
+    pid = input("请输入选课网址末尾的数字（示例：4665）：").strip()
+    # pid = "4665"
     if not pid.isdigit():
         print("profileId 应为数字。")
         sys.exit(1)
@@ -201,8 +201,8 @@ def course_info(session: requests.Session, pid: str):
 
     # 支持“序号”或“课程ID”混填
     print("\n请输入想要抢的‘序号’或‘课程ID’（可多个，空格分隔）：")
-    # tokens = input().strip().split()
-    tokens = "400785 398319 398891 398568".split()
+    tokens = input().strip().split()
+    # tokens = "400785 398319 398891 398568".split()
 
     chosen = []
     id_set = set(id_list)
